@@ -1,9 +1,11 @@
-import image from './assets/icon-arrow-down.svg'
+import Head from './components/Head'
+
+import './style/global.css'
 
 const App = () => {
   return (
     <div>
-      <img src={image} alt="" />
+      <Head />
     </div>
   )
 }
