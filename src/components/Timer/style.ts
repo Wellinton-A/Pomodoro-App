@@ -13,6 +13,7 @@ export const FirstDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: -50px -50px 75px #272c5a, 50px 50px 75px #121530;
 `
 
 export const SecondDiv = styled.div`
@@ -50,6 +51,8 @@ export const TimerDiv = styled.div`
   justify-content: center;
 
   span:first-child {
+    width: 100%;
+    padding: 0 26px;
     font-size: 100px;
     font-weight: bold;
     background-color: transparent;

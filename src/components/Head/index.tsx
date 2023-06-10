@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 
 import logo from '../../assets/logo.svg'
 
 import * as S from './style'
 import Select from '../Select'
+import { selectContext } from '../../context/select.contecxt'
 
 const Head = () => {
-  const [selectedSpan, setSelected] = useState<string>('pomodoro')
+  const { selectedSpan, setSelectedSpan } = useContext(selectContext)
 
   const click = (e: React.MouseEvent<HTMLSpanElement>) => {
     const target = e.target as HTMLSpanElement
     const firstChild = target.firstChild
 
     if (firstChild instanceof Text) {
-      setSelected(firstChild.data)
+      setSelectedSpan(firstChild.data)
     }
   }
 
