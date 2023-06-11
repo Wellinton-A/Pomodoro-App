@@ -2,6 +2,8 @@ import { useEffect, useState, useRef, useContext } from 'react'
 
 import { selectContext } from '../../context/select.contecxt'
 
+import settingsIcon from '../../assets/icon-settings.svg'
+
 import * as S from './style'
 
 const Timer = () => {
@@ -132,62 +134,67 @@ const Timer = () => {
   const progressBarPomodoro: number = progressBar()
 
   return (
-    <S.FirstDiv>
-      <S.SecondDiv>
-        <S.ProgressDiv progressbar={progressBarPomodoro}>
-          <S.TimerDiv>
-            {selectedSpan === 'pomodoro' && (
-              <>
-                <span>
-                  {minPomodoro()}:{secPomodoro()}
-                </span>
-                {pomodoro > 0 ? (
-                  <span onClick={pausePomodoro}>
-                    {startPomodoro ? 'Pause' : 'Start'}
+    <>
+      <S.FirstDiv>
+        <S.SecondDiv>
+          <S.ProgressDiv progressbar={progressBarPomodoro}>
+            <S.TimerDiv>
+              {selectedSpan === 'pomodoro' && (
+                <>
+                  <span>
+                    {minPomodoro()}:{secPomodoro()}
                   </span>
-                ) : (
-                  <span onClick={() => setPomodoro(pomodoroTimer * 60)}>
-                    Restart
+                  {pomodoro > 0 ? (
+                    <span onClick={pausePomodoro}>
+                      {startPomodoro ? 'Pause' : 'Start'}
+                    </span>
+                  ) : (
+                    <span onClick={() => setPomodoro(pomodoroTimer * 60)}>
+                      Restart
+                    </span>
+                  )}
+                </>
+              )}
+              {selectedSpan === 'short break' && (
+                <>
+                  <span>
+                    {minShortBreak()}:{secShortBreak()}
                   </span>
-                )}
-              </>
-            )}
-            {selectedSpan === 'short break' && (
-              <>
-                <span>
-                  {minShortBreak()}:{secShortBreak()}
-                </span>
-                {shortBreak > 0 ? (
-                  <span onClick={pauseShort}>
-                    {startShortBreak ? 'Pause' : 'Start'}
+                  {shortBreak > 0 ? (
+                    <span onClick={pauseShort}>
+                      {startShortBreak ? 'Pause' : 'Start'}
+                    </span>
+                  ) : (
+                    <span onClick={() => setShortBreak(shortBreakTimer * 60)}>
+                      Restart
+                    </span>
+                  )}
+                </>
+              )}
+              {selectedSpan === 'long break' && (
+                <>
+                  <span>
+                    {minLongBreak()}:{secLongBreak()}
                   </span>
-                ) : (
-                  <span onClick={() => setShortBreak(shortBreakTimer * 60)}>
-                    Restart
-                  </span>
-                )}
-              </>
-            )}
-            {selectedSpan === 'long break' && (
-              <>
-                <span>
-                  {minLongBreak()}:{secLongBreak()}
-                </span>
-                {longBreak > 0 ? (
-                  <span onClick={pauseLong}>
-                    {startLongBreak ? 'Pause' : 'Start'}
-                  </span>
-                ) : (
-                  <span onClick={() => setLongBreak(longBreakTimer * 60)}>
-                    Restart
-                  </span>
-                )}
-              </>
-            )}
-          </S.TimerDiv>
-        </S.ProgressDiv>
-      </S.SecondDiv>
-    </S.FirstDiv>
+                  {longBreak > 0 ? (
+                    <span onClick={pauseLong}>
+                      {startLongBreak ? 'Pause' : 'Start'}
+                    </span>
+                  ) : (
+                    <span onClick={() => setLongBreak(longBreakTimer * 60)}>
+                      Restart
+                    </span>
+                  )}
+                </>
+              )}
+            </S.TimerDiv>
+          </S.ProgressDiv>
+        </S.SecondDiv>
+      </S.FirstDiv>
+      <S.SettingsIconDiv>
+        <img src={settingsIcon} alt="Settings Icon" />
+      </S.SettingsIconDiv>
+    </>
   )
 }
 

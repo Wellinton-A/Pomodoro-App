@@ -13,7 +13,7 @@ export const FirstDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: -50px -50px 75px #272c5a, 50px 50px 75px #121530;
+  box-shadow: -50px -50px 50px #272c5a, 50px 50px 50px #121530;
 `
 
 export const SecondDiv = styled.div`
@@ -69,4 +69,9 @@ export const TimerDiv = styled.div`
     background-color: transparent;
     cursor: pointer;
   }
+`
+
+export const SettingsIconDiv = styled.div`
+  margin-top: 63px;
+  cursor: pointer;
 `
