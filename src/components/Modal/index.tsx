@@ -1,11 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import closeIcon from '../../assets/icon-close.svg'
 import increaseIcon from '../../assets/icon-arrow-up.svg'
 import decreaseIcon from '../../assets/icon-arrow-down.svg'
 import selectedItem from '../../assets/Path 2.png'
 
-import * as S from './style'
 import { modalContext } from '../../context/modal.context'
 import { settingsContext } from '../../context/settingsSelec.context'
 
@@ -13,13 +12,40 @@ export const kumbhSans = "'Kumbh Sans', sans-serif"
 export const robotoSlab = "'Roboto Slab', serif"
 export const spaceMono = "'Space Mono', monospace"
 
+import * as S from './style'
+
 export const orange = '#F87070'
 export const blue = '#70F3F8'
 export const purple = '#D881F8'
 
 const Modal = () => {
   const { modalIsOpen, setModalIsOpen } = useContext(modalContext)
-  const { color } = useContext(settingsContext)
+  const { color, setColor } = useContext(settingsContext)
+
+  const [selectedColor, setSelectedColor] = useState<string>(color)
+
+  const handleApply = () => {
+    setColor(selectedColor)
+    setModalIsOpen(false)
+  }
+
+  useEffect(() => {
+    if (!modalIsOpen) {
+      setSelectedColor(color)
+    }
+  }, [modalIsOpen])
+
+  const handleSelectColor = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const target = e.target as HTMLDivElement
+    if (target.id !== '') {
+      setSelectedColor(target.id)
+    }
+    if (target.id === selectedColor) {
+      return true
+    }
+  }
+
+  console.log(selectedColor)
 
   return (
     <S.ModalContainer modalisopen={modalIsOpen.toString()}>
@@ -72,18 +98,35 @@ const Modal = () => {
         <S.SettingsContainer>
           <span>Color</span>
           <S.OptionContainer>
-            <S.ColorOption id="orange" color={orange}>
+            <S.ColorOption
+              onClick={handleSelectColor}
+              id={orange}
+              color={orange}
+              showimage={(selectedColor === orange).toString()}
+            >
               <img src={selectedItem} alt="selected Icon" />
             </S.ColorOption>
-            <S.ColorOption id="blue" color={blue}>
+            <S.ColorOption
+              onClick={handleSelectColor}
+              id={blue}
+              color={blue}
+              showimage={(selectedColor === blue).toString()}
+            >
               <img src={selectedItem} alt="selected Icon" />
             </S.ColorOption>
-            <S.ColorOption id="purple" color={purple}>
+            <S.ColorOption
+              onClick={handleSelectColor}
+              id={purple}
+              color={purple}
+              showimage={(selectedColor === purple).toString()}
+            >
               <img src={selectedItem} alt="selected Icon" />
             </S.ColorOption>
           </S.OptionContainer>
         </S.SettingsContainer>
-        <S.ApplyButton colorbutton={color}>Apply</S.ApplyButton>
+        <S.ApplyButton onClick={handleApply} colorbutton={color}>
+          Apply
+        </S.ApplyButton>
       </S.ModalContent>
       <S.Overlay onClick={() => setModalIsOpen(false)} />
     </S.ModalContainer>

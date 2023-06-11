@@ -6,6 +6,7 @@ type Props = {
   border?: string
   modalisopen?: string
   colorbutton?: string
+  showimage?: string
 }
 
 export const ModalContainer = styled.div<Props>`
@@ -173,6 +174,7 @@ export const ColorOption = styled.div<Props>`
   cursor: pointer;
 
   img {
+    display: ${(props) => (props.showimage === 'true' ? 'flex' : 'none')};
     background-color: transparent;
   }
 `
