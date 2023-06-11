@@ -4,15 +4,16 @@ type Props = {
   fontStyle?: string
   color?: string
   border?: string
+  modalIsOpen?: string
 }
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<Props>`
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  display: flex;
+  display: ${(props) => (props.modalIsOpen === 'true' ? 'flex' : 'none')};
   justify-content: center;
   background-color: transparent;
 `
@@ -131,9 +132,8 @@ export const SettingsContainer = styled.div<Props>`
 
   span {
     font-size: 13px;
-    text-align: center;
-    background-color: transparent;
     font-weight: bold;
+    background-color: transparent;
     letter-spacing: 5px;
     text-transform: uppercase;
   }
@@ -165,8 +165,6 @@ export const ColorOption = styled.div<Props>`
   display: flex;
   height: 40px;
   width: 40px;
-  font-size: 15px;
-  font-weight: bold;
   border-radius: 50%;
   background-color: ${(props) => props.color};
   align-items: center;

@@ -5,9 +5,11 @@ import { selectContext } from '../../context/select.contecxt'
 import settingsIcon from '../../assets/icon-settings.svg'
 
 import * as S from './style'
+import { modalContext } from '../../context/modal.context'
 
 const Timer = () => {
   const { selectedSpan } = useContext(selectContext)
+  const { setModalIsOpen } = useContext(modalContext)
 
   const initialPomodoro = 25
   const initialShortBreak = 5
@@ -191,7 +193,7 @@ const Timer = () => {
           </S.ProgressDiv>
         </S.SecondDiv>
       </S.FirstDiv>
-      <S.SettingsIconDiv>
+      <S.SettingsIconDiv onClick={() => setModalIsOpen(true)}>
         <img src={settingsIcon} alt="Settings Icon" />
       </S.SettingsIconDiv>
     </>

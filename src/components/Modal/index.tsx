@@ -1,8 +1,11 @@
-import * as S from './style'
+import { useContext } from 'react'
 
 import closeIcon from '../../assets/icon-close.svg'
 import increaseIcon from '../../assets/icon-arrow-up.svg'
 import decreaseIcon from '../../assets/icon-arrow-down.svg'
+
+import * as S from './style'
+import { modalContext } from '../../context/modal.context'
 
 export const kumbhSans = "'Kumbh Sans', sans-serif"
 export const robotoSlab = "'Roboto Slab', serif"
@@ -13,11 +16,13 @@ export const blue = '#70F3F8'
 export const purple = '#D881F8'
 
 const Modal = () => {
+  const { modalIsOpen, setModalIsOpen } = useContext(modalContext)
+
   return (
-    <S.ModalContainer>
+    <S.ModalContainer modalIsOpen={modalIsOpen.toString()}>
       <S.ModalContent>
         <h3>Settings</h3>
-        <S.CloseContainer>
+        <S.CloseContainer onClick={() => setModalIsOpen(false)}>
           <img src={closeIcon} alt="Close Icon" />
         </S.CloseContainer>
         <h4>Time (Minutes)</h4>
@@ -71,7 +76,7 @@ const Modal = () => {
         </S.SettingsContainer>
         <S.ApplyButton>Apply</S.ApplyButton>
       </S.ModalContent>
-      <S.Overlay />
+      <S.Overlay onClick={() => setModalIsOpen(false)} />
     </S.ModalContainer>
   )
 }
