@@ -3,9 +3,11 @@ import { useContext } from 'react'
 import closeIcon from '../../assets/icon-close.svg'
 import increaseIcon from '../../assets/icon-arrow-up.svg'
 import decreaseIcon from '../../assets/icon-arrow-down.svg'
+import selectedItem from '../../assets/Path 2.png'
 
 import * as S from './style'
 import { modalContext } from '../../context/modal.context'
+import { settingsContext } from '../../context/settingsSelec.context'
 
 export const kumbhSans = "'Kumbh Sans', sans-serif"
 export const robotoSlab = "'Roboto Slab', serif"
@@ -17,6 +19,7 @@ export const purple = '#D881F8'
 
 const Modal = () => {
   const { modalIsOpen, setModalIsOpen } = useContext(modalContext)
+  const { color } = useContext(settingsContext)
 
   return (
     <S.ModalContainer modalIsOpen={modalIsOpen.toString()}>
@@ -69,12 +72,18 @@ const Modal = () => {
         <S.SettingsContainer>
           <span>Color</span>
           <S.OptionContainer>
-            <S.ColorOption color={orange} />
-            <S.ColorOption color={blue} />
-            <S.ColorOption color={purple} />
+            <S.ColorOption id="orange" color={orange}>
+              <img src={selectedItem} alt="selected Icon" />
+            </S.ColorOption>
+            <S.ColorOption id="blue" color={blue}>
+              <img src={selectedItem} alt="selected Icon" />
+            </S.ColorOption>
+            <S.ColorOption id="purple" color={purple}>
+              <img src={selectedItem} alt="selected Icon" />
+            </S.ColorOption>
           </S.OptionContainer>
         </S.SettingsContainer>
-        <S.ApplyButton>Apply</S.ApplyButton>
+        <S.ApplyButton colorButton={color}>Apply</S.ApplyButton>
       </S.ModalContent>
       <S.Overlay onClick={() => setModalIsOpen(false)} />
     </S.ModalContainer>

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 type Props = {
   progressbar: number
+  color: string
 }
 
 export const FirstDiv = styled.div`
@@ -30,7 +31,7 @@ export const ProgressDiv = styled.div<Props>`
   width: 339px;
   height: 339px;
   background: conic-gradient(
-    #f87070 ${(props) => props.progressbar}deg,
+    ${(props) => props.color} ${(props) => props.progressbar}deg,
     #161932 0deg
   );
   border-radius: 50%;

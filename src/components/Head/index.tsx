@@ -8,7 +8,6 @@ import { selectContext } from '../../context/select.contecxt'
 
 const Head = () => {
   const { selectedSpan, setSelectedSpan } = useContext(selectContext)
-
   const click = (e: React.MouseEvent<HTMLSpanElement>) => {
     const target = e.target as HTMLSpanElement
     const firstChild = target.firstChild

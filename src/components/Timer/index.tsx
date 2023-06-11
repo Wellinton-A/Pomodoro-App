@@ -6,10 +6,12 @@ import settingsIcon from '../../assets/icon-settings.svg'
 
 import * as S from './style'
 import { modalContext } from '../../context/modal.context'
+import { settingsContext } from '../../context/settingsSelec.context'
 
 const Timer = () => {
   const { selectedSpan } = useContext(selectContext)
   const { setModalIsOpen } = useContext(modalContext)
+  const { color } = useContext(settingsContext)
 
   const initialPomodoro = 25
   const initialShortBreak = 5
@@ -139,7 +141,7 @@ const Timer = () => {
     <>
       <S.FirstDiv>
         <S.SecondDiv>
-          <S.ProgressDiv progressbar={progressBarPomodoro}>
+          <S.ProgressDiv color={color} progressbar={progressBarPomodoro}>
             <S.TimerDiv>
               {selectedSpan === 'pomodoro' && (
                 <>

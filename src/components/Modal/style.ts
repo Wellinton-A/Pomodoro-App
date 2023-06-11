@@ -5,6 +5,7 @@ type Props = {
   color?: string
   border?: string
   modalIsOpen?: string
+  colorButton?: string
 }
 
 export const ModalContainer = styled.div<Props>`
@@ -170,14 +171,18 @@ export const ColorOption = styled.div<Props>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  img {
+    background-color: transparent;
+  }
 `
 
-export const ApplyButton = styled.span`
+export const ApplyButton = styled.span<Props>`
   position: absolute;
   top: 437px;
   left: 200px;
   border-radius: 26px;
-  background-color: #f87070;
+  background-color: ${(props) => props.colorButton};
   color: #ffffff;
   padding: 16px 47px;
   cursor: pointer;

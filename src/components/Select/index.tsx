@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { SelectSpan } from './style'
+import { settingsContext } from '../../context/settingsSelec.context'
 
 type Props = {
   children: string
@@ -9,6 +10,7 @@ type Props = {
 
 const Select = ({ children, selectedSpan, click }: Props) => {
   const [selected, setSelected] = useState<boolean>(false)
+  const { color } = useContext(settingsContext)
 
   useEffect(() => {
     if (selectedSpan === children) {
@@ -19,7 +21,11 @@ const Select = ({ children, selectedSpan, click }: Props) => {
   }, [selectedSpan, children])
 
   return (
-    <SelectSpan selectedstyle={selected.toString()} onClick={click}>
+    <SelectSpan
+      color={color}
+      selectedstyle={selected.toString()}
+      onClick={click}
+    >
       {children}
     </SelectSpan>
   )
