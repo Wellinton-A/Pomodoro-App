@@ -7,6 +7,7 @@ type Props = {
   modalisopen?: string
   colorbutton?: string
   showimage?: string
+  selectedfont?: string
 }
 
 export const ModalContainer = styled.div<Props>`
@@ -156,8 +157,9 @@ export const FontOption = styled.div<Props>`
   font-size: 15px;
   font-weight: bold;
   border-radius: 50%;
-  background-color: #eff1fa;
-  color: #1e213f;
+  background-color: ${(props) =>
+    props.selectedfont === 'true' ? '#161932' : '#EFF1FA'};
+  color: ${(props) => (props.selectedfont === 'true' ? '#ffffff' : '#1e213f')};
   align-items: center;
   justify-content: center;
   cursor: pointer;

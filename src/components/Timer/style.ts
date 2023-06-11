@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { spaceMono } from '../Modal'
+
 type Props = {
   progressbar: number
   color: string
@@ -52,8 +54,7 @@ export const TimerDiv = styled.div`
   justify-content: center;
 
   span:first-child {
-    width: 100%;
-    padding: 0 26px;
+    width: fit-content;
     font-size: 100px;
     font-weight: bold;
     background-color: transparent;

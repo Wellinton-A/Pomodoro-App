@@ -8,11 +8,11 @@ import selectedItem from '../../assets/Path 2.png'
 import { modalContext } from '../../context/modal.context'
 import { settingsContext } from '../../context/settingsSelec.context'
 
+import * as S from './style'
+
 export const kumbhSans = "'Kumbh Sans', sans-serif"
 export const robotoSlab = "'Roboto Slab', serif"
 export const spaceMono = "'Space Mono', monospace"
-
-import * as S from './style'
 
 export const orange = '#F87070'
 export const blue = '#70F3F8'
@@ -20,19 +20,23 @@ export const purple = '#D881F8'
 
 const Modal = () => {
   const { modalIsOpen, setModalIsOpen } = useContext(modalContext)
-  const { color, setColor } = useContext(settingsContext)
+  const { color, setColor, font, setFont } = useContext(settingsContext)
 
   const [selectedColor, setSelectedColor] = useState<string>(color)
+  const [selectedFont, setSelectedFont] = useState<string>(font)
 
   const handleApply = () => {
     setColor(selectedColor)
+    setFont(selectedFont)
     setModalIsOpen(false)
   }
 
   useEffect(() => {
     if (!modalIsOpen) {
       setSelectedColor(color)
+      setSelectedFont(font)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalIsOpen])
 
   const handleSelectColor = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -40,12 +44,16 @@ const Modal = () => {
     if (target.id !== '') {
       setSelectedColor(target.id)
     }
-    if (target.id === selectedColor) {
-      return true
+  }
+
+  const handleSelectFont = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const target = e.target as HTMLDivElement
+    if (target.id !== '') {
+      setSelectedFont(target.id)
     }
   }
 
-  console.log(selectedColor)
+  console.log(selectedFont)
 
   return (
     <S.ModalContainer modalisopen={modalIsOpen.toString()}>
@@ -90,9 +98,30 @@ const Modal = () => {
         <S.SettingsContainer border="border">
           <span>Font</span>
           <S.OptionContainer>
-            <S.FontOption fontStyle={kumbhSans}>Aa</S.FontOption>
-            <S.FontOption fontStyle={robotoSlab}>Aa</S.FontOption>
-            <S.FontOption fontStyle={spaceMono}>Aa</S.FontOption>
+            <S.FontOption
+              onClick={handleSelectFont}
+              id={kumbhSans}
+              fontStyle={kumbhSans}
+              selectedfont={(selectedFont === kumbhSans).toString()}
+            >
+              Aa
+            </S.FontOption>
+            <S.FontOption
+              onClick={handleSelectFont}
+              id={robotoSlab}
+              fontStyle={robotoSlab}
+              selectedfont={(selectedFont === robotoSlab).toString()}
+            >
+              Aa
+            </S.FontOption>
+            <S.FontOption
+              onClick={handleSelectFont}
+              id={spaceMono}
+              fontStyle={spaceMono}
+              selectedfont={(selectedFont === spaceMono).toString()}
+            >
+              Aa
+            </S.FontOption>
           </S.OptionContainer>
         </S.SettingsContainer>
         <S.SettingsContainer>

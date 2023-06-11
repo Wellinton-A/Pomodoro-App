@@ -1,9 +1,16 @@
-* {
+import { createGlobalStyle } from 'styled-components'
+
+type Props = {
+  font: string
+}
+
+const GlobalStyle = createGlobalStyle<Props>`
+  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #1E213F;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: ${(props) => props.font};
   font-weight: bold;
 }
 
@@ -14,8 +21,6 @@
   flex-direction: column;
   align-items: center;
 }
+`
 
-
-/* font-family: 'Kumbh Sans', sans-serif;
-font-family: 'Roboto Slab', serif;
-font-family: 'Space Mono', monospace; */
+export default GlobalStyle
