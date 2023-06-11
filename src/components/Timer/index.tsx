@@ -8,14 +8,32 @@ import * as S from './style'
 import { modalContext } from '../../context/modal.context'
 import { settingsContext } from '../../context/settingsSelec.context'
 
+const minutes = (timer: number) => {
+  if (Math.floor(timer / 60) < 10) {
+    return `0${Math.floor(timer / 60)}`
+  } else {
+    return Math.floor(timer / 60)
+  }
+}
+
+const seconds = (timer: number) => {
+  if (Math.floor(timer % 60) < 10) {
+    return `0${Math.floor(timer % 60)}`
+  } else {
+    return timer % 60
+  }
+}
+
 const Timer = () => {
   const { selectedSpan } = useContext(selectContext)
-  const { setModalIsOpen } = useContext(modalContext)
+  const { setModalIsOpen, modalIsOpen } = useContext(modalContext)
   const { color } = useContext(settingsContext)
+  const { pomodoroSetting, shortBreakSetting, longBreakSetting } =
+    useContext(settingsContext)
 
-  const initialPomodoro = 25
-  const initialShortBreak = 5
-  const initialLongBreak = 15
+  const [initialPomodoro, setInitialPomodoro] = useState(pomodoroSetting)
+  const [initialShortBreak, setInitialShortBreak] = useState(shortBreakSetting)
+  const [initialLongBreak, setInitialLongBreak] = useState(longBreakSetting)
 
   const [pomodoroTimer, setPomodoroTimer] = useState<number>(initialPomodoro)
   const [shortBreakTimer, setShortBreakTimer] =
@@ -30,53 +48,34 @@ const Timer = () => {
   const [shortBreak, setShortBreak] = useState<number>(shortBreakTimer * 60)
   const [longBreak, setLongBreak] = useState<number>(longBreakTimer * 60)
 
-  const minPomodoro = () => {
-    if (Math.floor(pomodoro / 60) < 10) {
-      return `0${Math.floor(pomodoro / 60)}`
-    } else {
-      return Math.floor(pomodoro / 60)
+  useEffect(() => {
+    if (modalIsOpen) {
+      setStartPomodoro(false)
+      setStartShortBreak(false)
+      setStartLongBreak(false)
     }
-  }
+  }, [modalIsOpen])
 
-  const secPomodoro = () => {
-    if (Math.floor(pomodoro % 60) < 10) {
-      return `0${Math.floor(pomodoro % 60)}`
-    } else {
-      return pomodoro % 60
-    }
-  }
+  useEffect(() => {
+    setPomodoroTimer(pomodoroSetting)
+    setInitialPomodoro(pomodoroSetting)
+    setPomodoro(pomodoroTimer * 60)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pomodoroSetting, pomodoroTimer])
 
-  const minShortBreak = () => {
-    if (Math.floor(shortBreak / 60) < 10) {
-      return `0${Math.floor(shortBreak / 60)}`
-    } else {
-      return Math.floor(shortBreak / 60)
-    }
-  }
+  useEffect(() => {
+    setShortBreakTimer(shortBreakSetting)
+    setInitialShortBreak(shortBreakSetting)
+    setShortBreak(shortBreakTimer * 60)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shortBreakSetting, shortBreakTimer])
 
-  const secShortBreak = () => {
-    if (Math.floor(shortBreak % 60) < 10) {
-      return `0${Math.floor(shortBreak % 60)}`
-    } else {
-      return shortBreak % 60
-    }
-  }
-
-  const minLongBreak = () => {
-    if (Math.floor(longBreak / 60) < 10) {
-      return `0${Math.floor(longBreak / 60)}`
-    } else {
-      return Math.floor(longBreak / 60)
-    }
-  }
-
-  const secLongBreak = () => {
-    if (Math.floor(longBreak % 60) < 10) {
-      return `0${Math.floor(longBreak % 60)}`
-    } else {
-      return longBreak % 60
-    }
-  }
+  useEffect(() => {
+    setLongBreakTimer(longBreakSetting)
+    setInitialLongBreak(longBreakSetting)
+    setLongBreak(longBreakTimer * 60)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [longBreakSetting, longBreakTimer])
 
   const runTimePomodoro = useRef<NodeJS.Timeout | undefined>(undefined)
   const runTimeShort = useRef<NodeJS.Timeout | undefined>(undefined)
@@ -146,7 +145,7 @@ const Timer = () => {
               {selectedSpan === 'pomodoro' && (
                 <>
                   <span>
-                    {minPomodoro()}:{secPomodoro()}
+                    {minutes(pomodoro)}:{seconds(pomodoro)}
                   </span>
                   {pomodoro > 0 ? (
                     <span onClick={pausePomodoro}>
@@ -162,7 +161,7 @@ const Timer = () => {
               {selectedSpan === 'short break' && (
                 <>
                   <span>
-                    {minShortBreak()}:{secShortBreak()}
+                    {minutes(shortBreak)}:{seconds(shortBreak)}
                   </span>
                   {shortBreak > 0 ? (
                     <span onClick={pauseShort}>
@@ -178,7 +177,7 @@ const Timer = () => {
               {selectedSpan === 'long break' && (
                 <>
                   <span>
-                    {minLongBreak()}:{secLongBreak()}
+                    {minutes(longBreak)}:{seconds(longBreak)}
                   </span>
                   {longBreak > 0 ? (
                     <span onClick={pauseLong}>

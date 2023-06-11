@@ -99,7 +99,7 @@ export const InputContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  input {
+  div {
     background-color: transparent;
     width: 60px;
     font-size: 14px;

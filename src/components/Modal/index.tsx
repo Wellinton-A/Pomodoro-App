@@ -20,14 +20,82 @@ export const purple = '#D881F8'
 
 const Modal = () => {
   const { modalIsOpen, setModalIsOpen } = useContext(modalContext)
-  const { color, setColor, font, setFont } = useContext(settingsContext)
+  const {
+    color,
+    setColor,
+    font,
+    setFont,
+    pomodoroSetting,
+    setPomodoroSetting,
+    shortBreakSetting,
+    setShortBreakSetting,
+    longBreakSetting,
+    setLongBreakSetting
+  } = useContext(settingsContext)
 
   const [selectedColor, setSelectedColor] = useState<string>(color)
   const [selectedFont, setSelectedFont] = useState<string>(font)
+  const [selectedPomodoro, setSelectedPomodoro] =
+    useState<number>(pomodoroSetting)
+  const [selectedShortBreak, setSelectedShortBreak] =
+    useState<number>(shortBreakSetting)
+  const [selectedLongtBreak, setSelectedLongBreak] =
+    useState<number>(longBreakSetting)
+
+  const increasePomodoroTimer = () => {
+    if (selectedPomodoro <= 85) {
+      setSelectedPomodoro(selectedPomodoro + 5)
+    } else {
+      alert('Maximum min is 90')
+    }
+  }
+
+  const decreasePomodoroTimer = () => {
+    if (selectedPomodoro >= 5) {
+      setSelectedPomodoro(selectedPomodoro - 5)
+    } else {
+      alert('Minimum min is 0')
+    }
+  }
+
+  const increaseShortTimer = () => {
+    if (selectedShortBreak <= 85) {
+      setSelectedShortBreak(selectedShortBreak + 5)
+    } else {
+      alert('Maximum min is 90')
+    }
+  }
+
+  const decreaseShortTimer = () => {
+    if (selectedShortBreak >= 5) {
+      setSelectedShortBreak(selectedShortBreak - 5)
+    } else {
+      alert('Minimum min is 0')
+    }
+  }
+
+  const increaseLongTimer = () => {
+    if (selectedLongtBreak <= 85) {
+      setSelectedLongBreak(selectedLongtBreak + 5)
+    } else {
+      alert('Maximum min is 90')
+    }
+  }
+
+  const decreaseLongTimer = () => {
+    if (selectedLongtBreak >= 5) {
+      setSelectedLongBreak(selectedLongtBreak - 5)
+    } else {
+      alert('Minimum min is 0')
+    }
+  }
 
   const handleApply = () => {
     setColor(selectedColor)
     setFont(selectedFont)
+    setPomodoroSetting(selectedPomodoro)
+    setShortBreakSetting(selectedShortBreak)
+    setLongBreakSetting(selectedLongtBreak)
     setModalIsOpen(false)
   }
 
@@ -35,6 +103,9 @@ const Modal = () => {
     if (!modalIsOpen) {
       setSelectedColor(color)
       setSelectedFont(font)
+      setSelectedPomodoro(pomodoroSetting)
+      setSelectedShortBreak(shortBreakSetting)
+      setSelectedLongBreak(longBreakSetting)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalIsOpen])
@@ -53,8 +124,6 @@ const Modal = () => {
     }
   }
 
-  console.log(selectedFont)
-
   return (
     <S.ModalContainer modalisopen={modalIsOpen.toString()}>
       <S.ModalContent>
@@ -67,30 +136,54 @@ const Modal = () => {
           <S.TimerContent>
             <label htmlFor="pomodoro">pomodoro</label>
             <S.InputContainer>
-              <input type="text" id="pomodoro" />
+              <div id="pomodoro">{selectedPomodoro}</div>
               <S.IconTimerContainer>
-                <img src={increaseIcon} alt="Increase Icon" />
-                <img src={decreaseIcon} alt="Decrease Icon" />
+                <img
+                  onClick={increasePomodoroTimer}
+                  src={increaseIcon}
+                  alt="Increase Icon"
+                />
+                <img
+                  onClick={decreasePomodoroTimer}
+                  src={decreaseIcon}
+                  alt="Decrease Icon"
+                />
               </S.IconTimerContainer>
             </S.InputContainer>
           </S.TimerContent>
           <S.TimerContent>
             <label htmlFor="short-break">short break</label>
             <S.InputContainer>
-              <input type="text" id="short-break" />
+              <div id="short-break">{selectedShortBreak}</div>
               <S.IconTimerContainer>
-                <img src={increaseIcon} alt="Increase Icon" />
-                <img src={decreaseIcon} alt="Decrease Icon" />
+                <img
+                  onClick={increaseShortTimer}
+                  src={increaseIcon}
+                  alt="Increase Icon"
+                />
+                <img
+                  onClick={decreaseShortTimer}
+                  src={decreaseIcon}
+                  alt="Decrease Icon"
+                />
               </S.IconTimerContainer>
             </S.InputContainer>
           </S.TimerContent>
           <S.TimerContent>
             <label htmlFor="long-break">long break</label>
             <S.InputContainer>
-              <input type="text" id="long-break" />
+              <div id="long-break">{selectedLongtBreak}</div>
               <S.IconTimerContainer>
-                <img src={increaseIcon} alt="Increase Icon" />
-                <img src={decreaseIcon} alt="Decrease Icon" />
+                <img
+                  onClick={increaseLongTimer}
+                  src={increaseIcon}
+                  alt="Increase Icon"
+                />
+                <img
+                  onClick={decreaseLongTimer}
+                  src={decreaseIcon}
+                  alt="Decrease Icon"
+                />
               </S.IconTimerContainer>
             </S.InputContainer>
           </S.TimerContent>

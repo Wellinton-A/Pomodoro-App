@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { spaceMono } from '../Modal'
-
 type Props = {
   progressbar: number
   color: string
