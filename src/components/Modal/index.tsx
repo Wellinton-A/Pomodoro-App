@@ -22,7 +22,7 @@ const Modal = () => {
   const { color } = useContext(settingsContext)
 
   return (
-    <S.ModalContainer modalIsOpen={modalIsOpen.toString()}>
+    <S.ModalContainer modalisopen={modalIsOpen.toString()}>
       <S.ModalContent>
         <h3>Settings</h3>
         <S.CloseContainer onClick={() => setModalIsOpen(false)}>
@@ -33,7 +33,7 @@ const Modal = () => {
           <S.TimerContent>
             <label htmlFor="pomodoro">pomodoro</label>
             <S.InputContainer>
-              <input type="text" id="pomodoro" value={25} />
+              <input type="text" id="pomodoro" />
               <S.IconTimerContainer>
                 <img src={increaseIcon} alt="Increase Icon" />
                 <img src={decreaseIcon} alt="Decrease Icon" />
@@ -43,7 +43,7 @@ const Modal = () => {
           <S.TimerContent>
             <label htmlFor="short-break">short break</label>
             <S.InputContainer>
-              <input type="text" id="short-break" value={5} />
+              <input type="text" id="short-break" />
               <S.IconTimerContainer>
                 <img src={increaseIcon} alt="Increase Icon" />
                 <img src={decreaseIcon} alt="Decrease Icon" />
@@ -53,7 +53,7 @@ const Modal = () => {
           <S.TimerContent>
             <label htmlFor="long-break">long break</label>
             <S.InputContainer>
-              <input type="text" id="long-break" value={25} />
+              <input type="text" id="long-break" />
               <S.IconTimerContainer>
                 <img src={increaseIcon} alt="Increase Icon" />
                 <img src={decreaseIcon} alt="Decrease Icon" />
@@ -83,7 +83,7 @@ const Modal = () => {
             </S.ColorOption>
           </S.OptionContainer>
         </S.SettingsContainer>
-        <S.ApplyButton colorButton={color}>Apply</S.ApplyButton>
+        <S.ApplyButton colorbutton={color}>Apply</S.ApplyButton>
       </S.ModalContent>
       <S.Overlay onClick={() => setModalIsOpen(false)} />
     </S.ModalContainer>

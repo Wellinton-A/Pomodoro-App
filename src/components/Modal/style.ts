@@ -4,8 +4,8 @@ type Props = {
   fontStyle?: string
   color?: string
   border?: string
-  modalIsOpen?: string
-  colorButton?: string
+  modalisopen?: string
+  colorbutton?: string
 }
 
 export const ModalContainer = styled.div<Props>`
@@ -14,7 +14,7 @@ export const ModalContainer = styled.div<Props>`
   left: 0;
   height: 100%;
   width: 100%;
-  display: ${(props) => (props.modalIsOpen === 'true' ? 'flex' : 'none')};
+  display: ${(props) => (props.modalisopen === 'true' ? 'flex' : 'none')};
   justify-content: center;
   background-color: transparent;
 `
@@ -182,7 +182,7 @@ export const ApplyButton = styled.span<Props>`
   top: 437px;
   left: 200px;
   border-radius: 26px;
-  background-color: ${(props) => props.colorButton};
+  background-color: ${(props) => props.colorbutton};
   color: #ffffff;
   padding: 16px 47px;
   cursor: pointer;
