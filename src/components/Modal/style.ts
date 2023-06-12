@@ -49,6 +49,24 @@ export const ModalContent = styled.div`
     margin-top: 28px;
     margin-left: 40px;
   }
+
+  @media (max-width: 767px) {
+    align-items: center;
+    width: 327px;
+    height: 549px;
+    margin-top: 42px;
+
+    h3 {
+      font-size: 20px;
+      align-self: flex-start;
+      width: 100%;
+      padding-top: 24px;
+    }
+
+    h4 {
+      font-size: 11px;
+    }
+  }
 `
 
 export const CloseContainer = styled.div`
@@ -60,6 +78,10 @@ export const CloseContainer = styled.div`
 
   img {
     background-color: transparent;
+  }
+
+  @media (max-width: 767px) {
+    top: 30px;
   }
 `
 
@@ -75,6 +97,13 @@ export const TimerSettingsContainer = styled.div`
   border-bottom: 2px solid #e3e1e1;
   display: flex;
   gap: 20px;
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+    gap: 8px;
+  }
 `
 
 export const TimerContent = styled.div`
@@ -85,6 +114,14 @@ export const TimerContent = styled.div`
     color: rgba(30, 33, 63, 0.4);
     background-color: transparent;
     margin-bottom: 10px;
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 280px;
+    height: 40px;
   }
 `
 
@@ -99,13 +136,16 @@ export const InputContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  div {
+  div:first-child {
     background-color: transparent;
     width: 60px;
     font-size: 14px;
     font-weight: bold;
-    border: none;
-    outline: none;
+  }
+
+  @media (max-width: 767px) {
+    height: 40px;
+    margin-bottom: 10px;
   }
 `
 
@@ -139,6 +179,17 @@ export const SettingsContainer = styled.div<Props>`
     background-color: transparent;
     letter-spacing: 5px;
     text-transform: uppercase;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    width: 280px;
+    margin: 16px 20px 0;
+
+    span {
+      margin-bottom: 16px;
+      font-size: 11px;
+    }
   }
 `
 
@@ -190,4 +241,9 @@ export const ApplyButton = styled.span<Props>`
   color: #ffffff;
   padding: 16px 47px;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    top: 522px;
+    left: 94px;
+  }
 `

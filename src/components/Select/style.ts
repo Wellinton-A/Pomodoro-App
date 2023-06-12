@@ -13,4 +13,9 @@ export const SelectSpan = styled.span<PropsStye>`
   border-radius: 24px;
   font-size: 14px;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    font-size: 12px;
+    padding: 12px 18px;
+  }
 `

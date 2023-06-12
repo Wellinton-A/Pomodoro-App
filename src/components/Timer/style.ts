@@ -15,6 +15,11 @@ export const FirstDiv = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: -50px -50px 50px #272c5a, 50px 50px 50px #121530;
+
+  @media (max-width: 767px) {
+    width: 300px;
+    height: 300px;
+  }
 `
 
 export const SecondDiv = styled.div`
@@ -25,6 +30,11 @@ export const SecondDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    width: 268px;
+    height: 268px;
+  }
 `
 
 export const ProgressDiv = styled.div<Props>`
@@ -38,6 +48,11 @@ export const ProgressDiv = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    width: 248px;
+    height: 248px;
+  }
 `
 
 export const TimerDiv = styled.div`
@@ -68,6 +83,19 @@ export const TimerDiv = styled.div`
     color: #d7e0ff;
     background-color: transparent;
     cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    width: 228px;
+    height: 228px;
+
+    span:first-child {
+      font-size: 80px;
+    }
+
+    span:nth-child(2) {
+      font-size: 14px;
+    }
   }
 `
 

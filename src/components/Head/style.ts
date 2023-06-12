@@ -12,6 +12,14 @@ export const HeadCOntainer = styled.div`
     width: 156px;
     height: 32px;
   }
+
+  @media (max-width: 767px) {
+    width: 327px;
+
+    img {
+      width: 128px;
+    }
+  }
 `
 
 export const SelectContainer = styled.div`
