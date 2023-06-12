@@ -10,7 +10,7 @@ type Props = {
 
 const Select = ({ children, selectedSpan, click }: Props) => {
   const [selected, setSelected] = useState<boolean>(false)
-  const { color } = useContext(settingsContext)
+  const { color, font } = useContext(settingsContext)
 
   useEffect(() => {
     if (selectedSpan === children) {
@@ -22,6 +22,7 @@ const Select = ({ children, selectedSpan, click }: Props) => {
 
   return (
     <SelectSpan
+      font={font}
       color={color}
       selectedstyle={selected.toString()}
       onClick={click}

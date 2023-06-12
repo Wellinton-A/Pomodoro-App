@@ -27,7 +27,7 @@ const seconds = (timer: number) => {
 const Timer = () => {
   const { selectedSpan } = useContext(selectContext)
   const { setModalIsOpen, modalIsOpen } = useContext(modalContext)
-  const { color } = useContext(settingsContext)
+  const { color, font } = useContext(settingsContext)
   const { pomodoroSetting, shortBreakSetting, longBreakSetting } =
     useContext(settingsContext)
 
@@ -141,7 +141,7 @@ const Timer = () => {
       <S.FirstDiv>
         <S.SecondDiv>
           <S.ProgressDiv color={color} progressbar={progressBarPomodoro}>
-            <S.TimerDiv>
+            <S.TimerDiv font={font}>
               {selectedSpan === 'pomodoro' && (
                 <>
                   <span>

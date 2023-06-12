@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
+import { spaceMono } from '../Modal'
+
 type PropsStye = {
   selectedstyle: string
   color: string
+  font?: string
 }
 
 export const SelectSpan = styled.span<PropsStye>`
@@ -15,7 +18,7 @@ export const SelectSpan = styled.span<PropsStye>`
   cursor: pointer;
 
   @media (max-width: 767px) {
-    font-size: 12px;
+    font-size: ${(props) => (props.font === spaceMono ? '11px' : '12px')};
     padding: 12px 18px;
   }
 `

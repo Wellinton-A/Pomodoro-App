@@ -1,8 +1,10 @@
 import styled from 'styled-components'
+import { spaceMono } from '../Modal'
 
 type Props = {
-  progressbar: number
-  color: string
+  progressbar?: number
+  color?: string
+  font?: string
 }
 
 export const FirstDiv = styled.div`
@@ -55,7 +57,7 @@ export const ProgressDiv = styled.div<Props>`
   }
 `
 
-export const TimerDiv = styled.div`
+export const TimerDiv = styled.div<Props>`
   width: 312px;
   height: 312px;
   background-color: #161932;
@@ -90,7 +92,7 @@ export const TimerDiv = styled.div`
     height: 228px;
 
     span:first-child {
-      font-size: 80px;
+      font-size: ${(props) => (props.font === spaceMono ? '60px' : '80px')};
     }
 
     span:nth-child(2) {
